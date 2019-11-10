@@ -1,12 +1,13 @@
 import requests
-import telebot
+import pprint
+import telegram
 
 from const import *
 
-# bot = telebot.TeleBot(TOKEN)
+bot = telegram.Bot(token=TOKEN)
 
-response = requests.get('https://dvmn.org/api/user_reviews/')
-print(response.json())
-# bot.send_message(r.json())
-
-# bot.polling(timeout=60)
+# bot.send_message(chat_id=421935954, text=' Извини, Дэйв, боюсь, я не могу этого сделать')
+while True:
+    response = requests.get(dev_long_URL, headers=headers)
+    for message in response:
+        bot.send_message(chat_id=421935954, text=response.json())
