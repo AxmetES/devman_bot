@@ -14,6 +14,9 @@ pprint.pprint(response.json())
 
 while True:
     response = requests.get(dev_long_URL, headers=headers)
+    dict_resp = response.json()
     for message in response:
-        if {"status": "found"} in response:
-            bot.send_message(chat_id=421935954, text=response.json())
+        if dict_resp.get('status') == 'timeout':
+            list_request = dict_resp.get('request_query')
+            print(list_request)
+            bot.send_message(chat_id=421935954, text=dict_resp)
