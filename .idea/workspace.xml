@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c0dc927c-34b2-4b4b-8ebf-5679f1bd0be7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/const.py" beforeDir="false" afterPath="$PROJECT_DIR$/const.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/devman_bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/devman_bot.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example.py" beforeDir="false" afterPath="$PROJECT_DIR$/example.py" afterDir="false" />
     </list>
@@ -115,7 +116,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573403104349</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="не могу отловить уведомление что бы дивагться дальше">
+      <created>1573476531879</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1573476531881</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -135,6 +143,7 @@
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <MESSAGE value="для проверки работает ли" />
     <MESSAGE value="wait for response" />
-    <option name="LAST_COMMIT_MESSAGE" value="wait for response" />
+    <MESSAGE value="не могу отловить уведомление что бы дивагться дальше" />
+    <option name="LAST_COMMIT_MESSAGE" value="не могу отловить уведомление что бы дивагться дальше" />
   </component>
 </project>
