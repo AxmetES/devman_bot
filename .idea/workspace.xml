@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c0dc927c-34b2-4b4b-8ebf-5679f1bd0be7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/const.py" beforeDir="false" afterPath="$PROJECT_DIR$/const.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/devman_bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/devman_bot.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example.py" beforeDir="false" afterPath="$PROJECT_DIR$/example.py" afterDir="false" />
     </list>
@@ -123,7 +122,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573476531881</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="в процессо отлова timestamp">
+      <created>1573582393145</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1573582393145</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -144,6 +150,7 @@
     <MESSAGE value="для проверки работает ли" />
     <MESSAGE value="wait for response" />
     <MESSAGE value="не могу отловить уведомление что бы дивагться дальше" />
-    <option name="LAST_COMMIT_MESSAGE" value="не могу отловить уведомление что бы дивагться дальше" />
+    <MESSAGE value="в процессо отлова timestamp" />
+    <option name="LAST_COMMIT_MESSAGE" value="в процессо отлова timestamp" />
   </component>
 </project>

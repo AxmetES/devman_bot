@@ -5,40 +5,43 @@ import telegram
 
 from const import *
 
-#
-# bot = telegram.Bot(token=TOKEN)
+pp = telegram.utils.request.Request(proxy_url='socks5h://95.141.130.122:9999')
+bot = telegram.Bot(token=TOKEN, request=pp)
+
+bot.send_message(chat_id=421935954, text=' Извини, Дэйв, боюсь, я не могу этого сделать')
+
+# requesr-respons function
 # timestamp = {'timestamp_to_request': 0}
-
-# bot.send_message(chat_id=421935954, text=' Извини, Дэйв, боюсь, я не могу этого сделать')
-
-timestamp = {'timestamp_to_request': 0}
-
-while True:
-    if timestamp.get('timestamp_to_request') == 0:
-        try:
-            response = requests.get(dev_long_URL, headers=headers)
-            dict_resp = response.json()
-            if dict_resp.get('status') == 'timeout':
-                pprint.pprint(dict_resp)
-        except ConnectionError:
-            continue
-
+#
 # while True:
-#     if timestamp['timestamp_to_request'] == 0:
-#         response = requests.get(dev_long_URL, headers=headers)
-#         dict_resp = response.json()
-#         if dict_resp.get('status') == 'timeout':
-#             timestamp['timestamp_to_request'] = dict_resp['timestamp_to_request']
-#         else:
-#             print(dict_resp)
+#     if timestamp.get('timestamp_to_request') == 0:
+#         try:
+#             response = requests.get(dev_long_URL, headers=headers)
+#             dict_resp = response.json()
+#
+#             if dict_resp.get('status') == 'found':
+#                 timestamp['timestamp_to_request'] = dict_resp.get('last_attempt_timestamp')
+#                 pprint.pprint(dict_resp)
+#                 print(timestamp)
+#             else:
+#                 timestamp['timestamp_to_request'] = dict_resp.get('timestamp_to_request')
+#         except ConnectionError:
+#             continue
 #     else:
-#         response = requests.get(dev_long_URL, headers=headers, params=timestamp)
-#         dict_resp = response.json()
-#         if dict_resp.get('status') == 'timeout':
-#             timestamp['timestamp_to_request'] = dict_resp['timestamp_to_request']
-#         else:
-#             print(dict_resp)
+#         try:
+#             response = requests.get(dev_long_URL, headers=headers, params=timestamp)
+#             dict_resp = response.json()
+#
+#             if dict_resp.get('status') == 'found':
+#                 timestamp['timestamp_to_request'] = dict_resp.get('last_attempt_timestamp')
+#                 pprint.pprint(dict_resp)
+#                 print(timestamp)
+#             else:
+#                 timestamp['timestamp_to_request'] = dict_resp.get('timestamp_to_request')
+#         except ConnectionError:
+#             continue
 
+# respons  - example
 # {'last_attempt_timestamp': 1573572410.077114,
 #  'new_attempts': [{'is_negative': True,
 #                    'lesson_title': 'Отправляем уведомления о проверке работ',
