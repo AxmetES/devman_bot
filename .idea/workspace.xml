@@ -129,7 +129,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573582393145</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="timestamp was cached ) and proxy was used">
+      <created>1573651016295</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1573651016296</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -151,6 +158,7 @@
     <MESSAGE value="wait for response" />
     <MESSAGE value="не могу отловить уведомление что бы дивагться дальше" />
     <MESSAGE value="в процессо отлова timestamp" />
-    <option name="LAST_COMMIT_MESSAGE" value="в процессо отлова timestamp" />
+    <MESSAGE value="timestamp was cached ) and proxy was used" />
+    <option name="LAST_COMMIT_MESSAGE" value="timestamp was cached ) and proxy was used" />
   </component>
 </project>
