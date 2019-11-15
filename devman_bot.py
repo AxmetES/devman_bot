@@ -29,7 +29,7 @@ while True:
                 teach_str = 'Преподавателю все понравилось, можно приступать к следующему уроку!'
             else:
                 teach_str = 'К сожелению в работе нашлись ошибки'
-            bot.send_message(chat_id=421935954,
+            bot.send_message(chat_id=******,
                              text=f'У вас проверили работу "Отправляем уведомление о проверке работ"\n{teach_str}\n Ссылка на урок: {devman_lesson_url}')
         else:
             last_timestamp = dict_resp.get('timestamp_to_request')
