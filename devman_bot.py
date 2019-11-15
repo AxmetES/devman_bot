@@ -4,15 +4,18 @@ import pprint
 import telegram
 import os
 from const import *
+from get_proxy import run
 
-# pp = telegram.utils.request.Request(proxy_url='socks5h://95.141.130.122:9999') , request=pp
-bot = telegram.Bot(token=os.environ.get('BOT_TOKEN'))
+proxy = run()
+pp = telegram.utils.request.Request(proxy_url=proxy)
 
+bot = telegram.Bot(token=os.environ.get('BOT_TOKEN'), request=pp)
 
 timestamp = {}
 devman_lesson_url = ''
 
 while True:
+    #
     try:
         response = requests.get(dev_long_URL, headers=headers, params=timestamp)
         dict_resp = response.json()
