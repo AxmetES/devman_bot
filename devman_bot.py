@@ -1,9 +1,8 @@
 import requests
 from requests import Timeout, ConnectionError
-import pprint
 import telegram
 import os
-from const import *
+from const import headers, dev_long_URL
 from get_proxy import run
 
 proxy = run()
@@ -15,7 +14,6 @@ timestamp = {}
 devman_lesson_url = ''
 
 while True:
-    #
     try:
         response = requests.get(dev_long_URL, headers=headers, params=timestamp)
         dict_resp = response.json()
@@ -29,8 +27,9 @@ while True:
                 teach_str = 'Преподавателю все понравилось, можно приступать к следующему уроку!'
             else:
                 teach_str = 'К сожелению в работе нашлись ошибки'
-            bot.send_message(chat_id=******,
-                             text=f'У вас проверили работу "Отправляем уведомление о проверке работ"\n{teach_str}\n Ссылка на урок: {devman_lesson_url}')
+            bot.send_message(
+                chat_id='421935954',
+                text=f'У вас проверили работу "Отправляем уведомление о проверке работ"\n{teach_str}\n Ссылка на урок: {devman_lesson_url}')
         else:
             last_timestamp = dict_resp.get('timestamp_to_request')
             timestamp = {'timestamp_to_request': {last_timestamp}}

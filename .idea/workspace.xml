@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c0dc927c-34b2-4b4b-8ebf-5679f1bd0be7" name="Default Changelist" comment="">
+    <list default="true" id="c0dc927c-34b2-4b4b-8ebf-5679f1bd0be7" name="Default Changelist" comment="add proxy to bot . last check and over">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/devman_bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/devman_bot.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/environment.env" beforeDir="false" afterPath="$PROJECT_DIR$/environment.env" afterDir="false" />
