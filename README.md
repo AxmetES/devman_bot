@@ -11,7 +11,8 @@ telegram - a package that allows you to interact with the telegram messenger usi
     [more information on python-telegram-bot ](https://github.com/python-telegram-bot/python-telegram-bot/wiki/Introduction-to-the-API)
 '''
 
-ProxyBroker - package for dynamically determining the working proxy server [Documentation](https://proxybroker.readthedocs.io/)
+ProxyBroker - ProxyBroker is an open source tool that asynchronously finds public proxies from multiple sources and concurrently checks them.
+[Documentation](https://proxybroker.readthedocs.io/)
 '''
     To install last stable release from pypi:
     .. code-block:: bash
