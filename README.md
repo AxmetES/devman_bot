@@ -46,7 +46,8 @@ for the project to work, you need to configure environment variables in python, 
 you write secret variables into it, and with the help of
     [BOT_TOKEN='your token'
      DEVMAN_TOKEN='your token'
-     DEVMAN_API = 'your API']
+     DEVMAN_API = 'your API'
+     CHAT_ID ='input youre chat id from telegram']
  you extract it in the code with package
  [import os] [more info](https://gist.github.com/dvmn-tasks/22b18aafb24a6be5213eb5c6532eaef8)
      '''
@@ -55,6 +56,7 @@ you write secret variables into it, and with the help of
         bot = telegram.Bot(token=os.environ.get('BOT_TOKEN'))
         # in module devman_bot.py
             devman_token = os.getenv('DEVMAN_TOKEN')
+            get_chat_id = os.environ.get('CHAT_ID')
 
         # in module const.py
             headers = {'Authorization': f'Token {devman_token}'}

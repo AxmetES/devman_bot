@@ -9,6 +9,7 @@ proxy = get_proxy()
 pp = telegram.utils.request.Request(proxy_url=proxy)
 
 bot = telegram.Bot(token=os.environ.get('BOT_TOKEN'), request=pp)
+get_chat_id = os.environ.get('CHAT_ID')
 
 timestamp = {}
 devman_lesson_url = ''
@@ -28,7 +29,7 @@ while True:
             else:
                 teach_str = 'К сожелению в работе нашлись ошибки'
             bot.send_message(
-                chat_id='421935954',
+                chat_id=get_chat_id,
                 text=f'У вас проверили работу "Отправляем уведомление о проверке работ"\n{teach_str}\n Ссылка на урок: {devman_lesson_url}')
         else:
             last_timestamp = dict_resp.get('timestamp_to_request')
