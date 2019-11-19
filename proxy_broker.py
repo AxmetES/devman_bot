@@ -14,7 +14,7 @@ async def save(proxies, filename):
             f.write(row)
 
 
-def run():
+def get_proxy():
     proxies = asyncio.Queue()
     broker = Broker(proxies)
     tasks = asyncio.gather(broker.find(types=['SOCKS5'], limit=10),

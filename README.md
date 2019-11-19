@@ -40,6 +40,25 @@ ProxyBroker - package for dynamically determining the working proxy server [Docu
 
 the project is an assignment in online courses [Devman](https://dvmn.org/modules/)
 
+## Using
+for the project to work, you need to configure environment variables in python, and name it [environment.env]
+you write secret variables into it, and with the help of
+    [BOT_TOKEN='your token'
+     DEVMAN_TOKEN='your token'
+     DEVMAN_API = 'your API']
+ you extract it in the code with package
+ [import os] [more info](https://gist.github.com/dvmn-tasks/22b18aafb24a6be5213eb5c6532eaef8)
+     '''
+        import os
+
+        bot = telegram.Bot(token=os.environ.get('BOT_TOKEN'))
+        # in module devman_bot.py
+            devman_token = os.getenv('DEVMAN_TOKEN')
+
+        # in module const.py
+            headers = {'Authorization': f'Token {devman_token}'}
+     '''
+
 ## Installation
 
 set by launching telegram bot

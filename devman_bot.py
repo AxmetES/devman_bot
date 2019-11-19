@@ -3,9 +3,9 @@ from requests import ConnectionError
 import telegram
 import os
 from const import headers, dev_long_URL
-from get_proxy import run
+from proxy_broker import get_proxy
 
-proxy = run()
+proxy = get_proxy()
 pp = telegram.utils.request.Request(proxy_url=proxy)
 
 bot = telegram.Bot(token=os.environ.get('BOT_TOKEN'), request=pp)
