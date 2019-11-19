@@ -1,6 +1,4 @@
 #ignored files and folders
-.idea
-#
-__pycach__
-#
+/.idea
+/__pycach__
 token_devman.txt

@@ -1,5 +1,5 @@
 import requests
-from requests import Timeout, ConnectionError
+from requests import ConnectionError
 import telegram
 import os
 from const import headers, dev_long_URL
