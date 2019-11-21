@@ -1,15 +1,15 @@
 ## Telegram bot notifications
 
-telegram messenger notifying via telegram
+project of a bot notifying via telegram a messenger about the status of homework at Devman courses
 
 ## Getting Started
 
 telegram - a package that allows you to interact with the telegram messenger using the token that is specified in the module
-
+[more information on python-telegram-bot ](https://github.com/python-telegram-bot/python-telegram-bot/wiki/Introduction-to-the-API)
     '''
         import telegram
+
         bot = telegram.Bot(token=os.environ.get('BOT_TOKEN')
-        [more information on python-telegram-bot ](https://github.com/python-telegram-bot/python-telegram-bot/wiki/Introduction-to-the-API)
     '''
 
 ProxyBroker - ProxyBroker is an open source tool that asynchronously finds public proxies from multiple sources and concurrently checks them.
