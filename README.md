@@ -49,7 +49,7 @@ for the project to work, you need to configure environment variables in python, 
 you write secret variables into it, and with the help of
 
     '''
-        BOT_TOKEN='your token'
+         BOT_TOKEN='your token'
          DEVMAN_TOKEN='your token'
          DEVMAN_API = 'your API'
          CHAT_ID ='input youre chat id from telegram'
@@ -70,6 +70,7 @@ import os [more info](https://gist.github.com/dvmn-tasks/22b18aafb24a6be5213eb5c
 
     '''
         import os
+
         headers = {'Authorization': f'Token {devman_token}'}
     '''
 
