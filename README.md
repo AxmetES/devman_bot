@@ -4,40 +4,7 @@ project of a bot notifying via telegram a messenger about the status of homework
 
 ## Getting Started
 
-telegram - a package that allows you to interact with the telegram messenger using the token that is specified in the module
-[more information on python-telegram-bot ](https://github.com/python-telegram-bot/python-telegram-bot/wiki/Introduction-to-the-API)
-
-```python
- import telegram
- bot = telegram.Bot(token=os.environ.get('BOT_TOKEN')
-```
-
-ProxyBroker - ProxyBroker is an open source tool that asynchronously finds public proxies from multiple sources and concurrently checks them.
-[Documentation](https://proxybroker.readthedocs.io/)
-
-```python
-To install last stable release from pypi:
-.. code-block:: bash
-$ pip install proxybroker
-
-import asyncio
-from proxybroker import Broker
-
-        async def show(proxies):
-        while True:
-        proxy = await proxies.get()
-        if proxy is None: break
-        print('Found proxy: %s' % proxy)
-
-        proxies = asyncio.Queue()
-        broker = Broker(proxies)
-        tasks = asyncio.gather(
-        broker.find(types=['HTTP', 'HTTPS'], limit=10),
-        show(proxies))
-
-        loop = asyncio.get_event_loop()
-        loop.run_until_complete(tasks)
-```
+You can start working with the bot by finding it by the name `@devman_axmet_bot` by launching it in the telegram messenger
 
 ## Motivation
 
