@@ -8,7 +8,6 @@ telegram - a package that allows you to interact with the telegram messenger usi
 [more information on python-telegram-bot ](https://github.com/python-telegram-bot/python-telegram-bot/wiki/Introduction-to-the-API)
 
  `import telegram
- 
   bot = telegram.Bot(token=os.environ.get('BOT_TOKEN')`
 
 ProxyBroker - ProxyBroker is an open source tool that asynchronously finds public proxies from multiple sources and concurrently checks them.
