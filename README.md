@@ -7,9 +7,8 @@ project of a bot notifying via telegram a messenger about the status of homework
 telegram - a package that allows you to interact with the telegram messenger using the token that is specified in the module
 [more information on python-telegram-bot ](https://github.com/python-telegram-bot/python-telegram-bot/wiki/Introduction-to-the-API)
 
- `import telegram
-  bot = telegram.Bot(token=os.environ.get('BOT_TOKEN')
- `
+ `import telegram`
+ ` bot = telegram.Bot(token=os.environ.get('BOT_TOKEN')`
 
 ProxyBroker - ProxyBroker is an open source tool that asynchronously finds public proxies from multiple sources and concurrently checks them.
 [Documentation](https://proxybroker.readthedocs.io/)
