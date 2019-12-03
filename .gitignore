@@ -2,3 +2,4 @@
 /.idea
 /__pycach__
 token_devman.txt
+.env
