@@ -1,0 +1,4 @@
+async-timeout==3.0.1
+proxybroker==0.3.2
+python-telegram-bot==12.2.0
+requests==2.7.0
