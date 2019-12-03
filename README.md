@@ -44,6 +44,10 @@ import os [more info](https://gist.github.com/dvmn-tasks/22b18aafb24a6be5213eb5c
 
 set by launching telegram bot
 
+## Running
+
+ python devman_bot.py
+
 ## License
 
 You may copy, distribute and modify the software
