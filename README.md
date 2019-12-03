@@ -46,7 +46,9 @@ set by launching telegram bot
 
 ## Running
 
+```python
  python devman_bot.py
+```
 
 ## License
 
