@@ -1,5 +1,5 @@
 import requests
-from requests import ConnectionError
+from requests import ConnectionError, Timeout, HTTPError
 import telegram
 import os
 from const import headers, dev_long_URL
@@ -17,10 +17,14 @@ devman_lesson_url = ''
 while True:
     try:
         response = requests.get(dev_long_URL, headers=headers, params=timestamp)
+        response.raise_for_status()
         dict_resp = response.json()
+
         if dict_resp.get('status') == 'found':
             last_timestamp = dict_resp.get('last_attempt_timestamp')
             timestamp = {'timestamp_to_request': {last_timestamp}}
+            # сообщение куратору : не понимаю почему ненадо трогать "last_timestamp" ?
+            # разве мы не должны брать таймстамп в любом случае как в статусе ответа "found" так и в статусе "timeout" ?
             devman_lesson_url = 'https://dvmn.org'
             devman_lesson_url = devman_lesson_url + dict_resp['new_attempts'][0]['lesson_url']
 
@@ -30,9 +34,16 @@ while True:
                 teach_str = 'К сожелению в работе нашлись ошибки'
             bot.send_message(
                 chat_id=get_chat_id,
-                text=f'У вас проверили работу "Отправляем уведомление о проверке работ"\n{teach_str}\n Ссылка на урок: {devman_lesson_url}')
+                text=f'У вас проверили работу, отправляем уведомление о проверке работ \n{teach_str}\n Ссылка на урок: {devman_lesson_url}')
         else:
             last_timestamp = dict_resp.get('timestamp_to_request')
             timestamp = {'timestamp_to_request': {last_timestamp}}
     except ConnectionError:
+        print('ConnectionError')
+        continue
+    except Timeout:
+        print('Timeout')
+        continue
+    except HTTPError:
+        print('HTTPError bad request')
         continue
