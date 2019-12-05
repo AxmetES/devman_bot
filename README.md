@@ -1,10 +1,10 @@
 ## Telegram bot notifications
 
-project of a bot notifying via telegram a messenger about the status of homework at Devman courses
+Project of a bot notifying via telegram a messenger about the status of homework at Devman courses
 
 ## Getting Started
 
-for the project to work, install all necessary packages 
+For the project to work, install all necessary packages 
 
 ```python
  pip install -r requirements.txt
@@ -40,14 +40,11 @@ import os [more info](https://gist.github.com/dvmn-tasks/22b18aafb24a6be5213eb5c
 
 ## Motivation
 
-the project is an assignment in online courses [Devman](https://dvmn.org/modules/)
-
-## Using
-
+The project is an assignment in online courses [Devman](https://dvmn.org/modules/)
 
 ## Installation
 
-set by launching telegram bot
+Set by launching telegram bot
 
 ## Running
 
