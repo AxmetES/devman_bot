@@ -20,31 +20,10 @@ you write secret variables into it, and with the help of
 ```
 you extract it in the code with package
 import os [more info](https://gist.github.com/dvmn-tasks/22b18aafb24a6be5213eb5c6532eaef8)
-#### in module devman_bot.py
-
-```python
- import os
-
- bot = telegram.Bot(token=os.environ.get('BOT_TOKEN'))
- devman_token = os.getenv('DEVMAN_TOKEN')
- get_chat_id = os.environ.get('CHAT_ID')
-```
-
-#### in module const.py
-
-```python
- import os
-
- headers = {'Authorization': f'Token {devman_token}'}
-```
 
 ## Motivation
 
 The project is an assignment in online courses [Devman](https://dvmn.org/modules/)
-
-## Installation
-
-Set by launching telegram bot
 
 ## Running
 

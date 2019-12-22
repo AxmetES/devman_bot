@@ -1,49 +1,64 @@
+import logging
 import requests
-from requests import ConnectionError, Timeout, HTTPError
 import telegram
 import os
 from const import headers, dev_long_URL
 from proxy_broker import get_proxy
 
-proxy = get_proxy()
-pp = telegram.utils.request.Request(proxy_url=proxy)
+URL_DEVMAN_LESSON = 'https://dvmn.org/modules/'
 
-bot = telegram.Bot(token=os.environ.get('BOT_TOKEN'), request=pp)
-get_chat_id = os.environ.get('CHAT_ID')
 
-timestamp = {}
-devman_lesson_url = ''
+def get_time_stump(json):
+    if 'found' in json:
+        element_of_response = json.get('last_attempt_timestamp')
+        request_params = {'timestamp_to_request': {f'{element_of_response}'}}
+        return request_params
+    else:
+        element_of_response = json.get('timestamp_to_request')
+        request_params = {'timestamp_to_request': {f'{element_of_response}'}}
+        return request_params
 
-while True:
-    try:
-        response = requests.get(dev_long_URL, headers=headers, params=timestamp)
-        response.raise_for_status()
-        dict_resp = response.json()
 
-        if dict_resp.get('status') == 'found':
-            last_timestamp = dict_resp.get('last_attempt_timestamp')
-            timestamp = {'timestamp_to_request': {last_timestamp}}
-            # сообщение куратору : не понимаю почему ненадо трогать "last_timestamp" ?
-            # разве мы не должны брать таймстамп в любом случае как в статусе ответа "found" так и в статусе "timeout" ?
-            devman_lesson_url = 'https://dvmn.org'
-            devman_lesson_url = devman_lesson_url + dict_resp['new_attempts'][0]['lesson_url']
+def get_message(json):
+    if not json['new_attempts'][0]['is_negative']:
+        message = 'Преподавателю все понравилось, можно приступать к следующему уроку!'
+    else:
+        message = 'К сожалению в работе нашлись ошибки'
 
-            if dict_resp['new_attempts'][0]['is_negative'] == False:
-                teach_str = 'Преподавателю все понравилось, можно приступать к следующему уроку!'
-            else:
-                teach_str = 'К сожелению в работе нашлись ошибки'
-            bot.send_message(
-                chat_id=get_chat_id,
-                text=f'У вас проверили работу, отправляем уведомление о проверке работ \n{teach_str}\n Ссылка на урок: {devman_lesson_url}')
-        else:
-            last_timestamp = dict_resp.get('timestamp_to_request')
-            timestamp = {'timestamp_to_request': {last_timestamp}}
-    except ConnectionError:
-        print('ConnectionError')
-        continue
-    except Timeout:
-        print('Timeout')
-        continue
-    except HTTPError:
-        print('HTTPError bad request')
-        continue
+    full_message = f'''У вас проверили работу, отправляем уведомление о проверке работ,
+                        {message}  Ссылка на урок: {URL_DEVMAN_LESSON}'''
+    return full_message
+
+
+def main():
+    proxy = get_proxy()
+    pp = telegram.utils.request.Request(proxy_url=proxy)
+
+    bot = telegram.Bot(token=os.environ.get('BOT_TOKEN'), request=pp)
+    chat_id = os.environ.get('CHAT_ID')
+
+    request_params = {}
+    while True:
+        try:
+            response = requests.get(dev_long_URL, headers=headers, params=request_params)
+            response.raise_for_status()
+            dict_resp = response.json()
+            if 'error' in dict_resp:
+                raise requests.exceptions.HTTPError(dict_resp['error'])
+
+            request_params = get_time_stump(dict_resp)
+
+            user_message = get_message(dict_resp)
+
+            bot.send_message(chat_id=chat_id, text=user_message)
+
+        except requests.exceptions.ConnectionError as error:
+            print(f'{error}')
+        except requests.exceptions.Timeout as error:
+            print(f'{error}')
+        except requests.exceptions.HTTPError as error:
+            print('Cant get data from server:\n{0}'.format(error))
+
+
+if __name__ == '__main__':
+    main()
