@@ -1,29 +1,22 @@
 ## Telegram bot notifications
 
-Project of a bot notifying via telegram a messenger about the status of homework at Devman courses
+Telegram bot notifying about checking homework.
 
 ## Getting Started
 
-For the project to work, install all necessary packages 
+For the project to work, install all necessary packages.
 
 ```python
  pip install -r requirements.txt
 ```
-than you need to configure environment variables in python, and name it environment.env
-you write secret variables into it, and with the help of
+Сreate a file for storing sensitive data, secret keys and tokens.
 
 ```python
  BOT_TOKEN='your token'
  DEVMAN_TOKEN='your token'
- DEVMAN_API = 'your API'
+ DEVMAN_API_KEY = 'your API'
  CHAT_ID ='input youre chat id from telegram'
 ```
-you extract it in the code with package
-import os [more info](https://gist.github.com/dvmn-tasks/22b18aafb24a6be5213eb5c6532eaef8)
-
-## Motivation
-
-The project is an assignment in online courses [Devman](https://dvmn.org/modules/)
 
 ## Running
 
@@ -33,4 +26,4 @@ The project is an assignment in online courses [Devman](https://dvmn.org/modules
 
 ## License
 
-You may copy, distribute and modify the software
+You may copy, distribute and modify the software.
