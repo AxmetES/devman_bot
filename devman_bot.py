@@ -5,34 +5,34 @@ from const import headers, dev_long_URL
 from proxy_broker import get_proxy
 
 
-def get_time_stump(json):
-    if json['status'] == 'found':
-        element_of_response = json.get('last_attempt_timestamp')
+def get_time_stump(resp_dect):
+    if resp_dect['status'] == 'found':
+        element_of_response = resp_dect.get('last_attempt_timestamp')
         request_params = {'timestamp_to_request': {f'{element_of_response}'}}
         print(request_params)
         return request_params
     else:
-        element_of_response = json.get('timestamp_to_request')
+        element_of_response = resp_dect.get('timestamp_to_request')
         request_params = {'timestamp_to_request': {f'{element_of_response}'}}
         print(request_params)
         return request_params
 
 
-def get_message(json, chat_id, bot):
+def get_message(resp_dect, chat_id, bot):
     url_devman = 'https://dvmn.org'
     message = ''
 
-    if json['status'] == 'timeout':
+    if resp_dect['status'] == 'timeout':
         pass
-    elif json['status'] == 'found':
-        if not json['new_attempts'][0]['is_negative']:
+    elif resp_dect['status'] == 'found':
+        if not resp_dect['new_attempts'][0]['is_negative']:
             message = 'Преподавателю все понравилось, можно приступать к следующему уроку!'
-        elif json['new_attempts'][0]['is_negative']:
+        elif resp_dect['new_attempts'][0]['is_negative']:
             message = 'К сожалению в работе нашлись ошибки'
-        url_lesson = json['new_attempts'][0]['lesson_url']
+        url_lesson = resp_dect['new_attempts'][0]['lesson_url']
 
         url_devman = url_devman + url_lesson
-        lesson_title = json['new_attempts'][0]['lesson_title']
+        lesson_title = resp_dect['new_attempts'][0]['lesson_title']
         full_message = f'''{lesson_title}, {message}  Ссылка на урок: {url_devman}'''
         bot.send_message(chat_id=chat_id, text=full_message)
 
@@ -57,11 +57,11 @@ def main():
     request_params = {}
     while True:
         try:
-            dict_resp = get_request(dev_long_URL, headers, request_params)
+            resp_dect = get_request(dev_long_URL, headers, request_params)
 
-            request_params = get_time_stump(dict_resp)
+            request_params = get_time_stump(resp_dect)
 
-            get_message(dict_resp, chat_id, bot)
+            get_message(resp_dect, chat_id, bot)
 
         except requests.exceptions.ConnectionError as error:
             print(f'{error}')
