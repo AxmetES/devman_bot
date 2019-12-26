@@ -9,7 +9,7 @@ For the project to work, install all necessary packages.
 ```python
  pip install -r requirements.txt
 ```
-Сreate a file for storing sensitive data, secret keys and tokens.
+Create an `.env` file in the project directory for storing sensitive data, secret keys and tokens.
 
 ```python
  BOT_TOKEN='your token'

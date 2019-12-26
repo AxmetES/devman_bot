@@ -1,0 +1,1 @@
+worker: python devman_bot.py
