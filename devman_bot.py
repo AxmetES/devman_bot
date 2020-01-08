@@ -22,16 +22,16 @@ def send_message(response, chat_id, bot):
     message = ''
 
     if response['status'] == 'found':
-        attempts = response['new_attempts'][0]
+        attempt = response['new_attempts'][0]
 
-        if not attempts['is_negative']:
+        if not attempt['is_negative']:
             message = 'Преподавателю все понравилось, можно приступать к следующему уроку!'
-        elif attempts['is_negative']:
+        elif attempt['is_negative']:
             message = 'К сожалению в работе нашлись ошибки'
 
-        url_devman = url_devman + attempts['lesson_url']
+        url_devman = url_devman + attempt['lesson_url']
 
-        full_message = f'''{attempts['lesson_title']}, {message}  Ссылка на урок: {url_devman}'''
+        full_message = f'''{attempt['lesson_title']}, {message}  Ссылка на урок: {url_devman}'''
         bot.send_message(chat_id=chat_id, text=full_message)
 
 
