@@ -54,6 +54,7 @@ def main():
 
     bot = telegram.Bot(token=os.environ.get('BOT_TOKEN'), request=pp)
     chat_id = os.environ.get('CHAT_ID')
+    logging.info('bot is started')
 
     request_params = {}
     while True:
