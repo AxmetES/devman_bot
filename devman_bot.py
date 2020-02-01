@@ -1,3 +1,5 @@
+import time
+
 import requests
 import telegram
 from proxy_broker import get_proxy
@@ -46,6 +48,16 @@ def request_devman_api(url, headers, params):
     return response_data
 
 
+def get_logs(bot):
+    logging.basicConfig(level=logging.DEBUG,
+                        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    logger = logging.getLogger('bot logger')
+    logger.setLevel(logging.INFO)
+    handler = BotLoggerHandler(bot=bot)
+    logger.addHandler(handler)
+    return logger
+
+
 def main():
     dev_long_URL = 'https://dvmn.org/api/long_polling/'
     devman_token = os.getenv('DEVMAN_TOKEN')
@@ -53,15 +65,9 @@ def main():
 
     proxy = get_proxy()
     pp = telegram.utils.request.Request(proxy_url=proxy)
-
     bot = telegram.Bot(token=os.getenv('BOT_TOKEN'), request=pp)
 
-    logging.basicConfig(level=logging.DEBUG,
-                        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    logger = logging.getLogger('bot logger')
-    logger.setLevel(logging.INFO)
-    handler = BotLoggerHandler(bot=bot)
-    logger.addHandler(handler)
+    logger = get_logs(bot)
     logger.info('bot is started')
 
     request_params = {}
@@ -76,6 +82,7 @@ def main():
             logger.debug(f'{error}')
         except requests.exceptions.HTTPError as error:
             logger.error(f'{error}')
+            time.sleep(60)
 
 
 class BotLoggerHandler(logging.Handler):
