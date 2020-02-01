@@ -1,9 +1,10 @@
 import requests
 import telegram
-import os
-from const import headers, dev_long_URL
 from proxy_broker import get_proxy
+import os
 import logging
+
+chat_id = os.getenv('CHAT_ID')
 
 
 def get_time_stamp(response):
@@ -46,31 +47,45 @@ def request_devman_api(url, headers, params):
 
 
 def main():
-    logging.basicConfig(level=logging.DEBUG,
-                        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    dev_long_URL = 'https://dvmn.org/api/long_polling/'
+    devman_token = os.getenv('DEVMAN_TOKEN')
+    headers = {'Authorization': f'Token {devman_token}'}
 
     proxy = get_proxy()
     pp = telegram.utils.request.Request(proxy_url=proxy)
 
-    bot = telegram.Bot(token=os.environ.get('BOT_TOKEN'), request=pp)
-    chat_id = os.environ.get('CHAT_ID')
-    logging.info('bot is started')
+    bot = telegram.Bot(token=os.getenv('BOT_TOKEN'), request=pp)
+
+    logging.basicConfig(level=logging.DEBUG,
+                        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    logger = logging.getLogger('bot logger')
+    logger.setLevel(logging.INFO)
+    handler = BotLoggerHandler(bot=bot)
+    logger.addHandler(handler)
+    logger.info('bot is started')
 
     request_params = {}
     while True:
         try:
             response = request_devman_api(dev_long_URL, headers, request_params)
-
             request_params = get_time_stamp(response)
-
             send_message(response, chat_id, bot)
-
         except requests.exceptions.ConnectionError as error:
-            logging.debug(f'{error}')
+            logger.debug(f'{error}')
         except requests.exceptions.Timeout as error:
-            logging.debug(f'{error}')
+            logger.debug(f'{error}')
         except requests.exceptions.HTTPError as error:
-            logging.error(f'{error}')
+            logger.error(f'{error}')
+
+
+class BotLoggerHandler(logging.Handler):
+    def __init__(self, bot):
+        super().__init__()
+        self.bot = bot
+
+    def emit(self, record):
+        log_entry = self.format(record)
+        self.bot.send_message(chat_id=chat_id, text=log_entry)
 
 
 if __name__ == '__main__':
