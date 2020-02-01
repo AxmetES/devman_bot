@@ -69,7 +69,6 @@ def main():
 
     logger = get_logs(bot)
     logger.info('bot is started')
-
     request_params = {}
     while True:
         try:
@@ -82,7 +81,9 @@ def main():
             logger.debug(f'{error}')
         except requests.exceptions.HTTPError as error:
             logger.error(f'{error}')
-            time.sleep(60)
+            time.sleep(30)
+        except Exception:
+            logger.exception('Bot is crashed')
 
 
 class BotLoggerHandler(logging.Handler):
