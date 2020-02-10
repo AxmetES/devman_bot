@@ -1,5 +1,8 @@
 #ignored files and folders
 /.idea
-/__pycach__
+/__pycache__
+/bot_env
 token_devman.txt
 .env
+dvm_bot_log.log
+
