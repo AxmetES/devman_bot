@@ -59,7 +59,7 @@ def get_logs(bot):
 
 
 def main():
-    dev_long_URL = 'https://dvmn.org/api/long_polling/'
+    dev_long_url = 'https://dvmn.org/api/long_polling/'
     devman_token = os.getenv('DEVMAN_TOKEN')
     headers = {'Authorization': f'Token {devman_token}'}
 
@@ -72,7 +72,7 @@ def main():
     request_params = {}
     while True:
         try:
-            response = request_devman_api(dev_long_URL, headers, request_params)
+            response = request_devman_api(dev_long_url, headers, request_params)
             request_params = get_time_stamp(response)
             send_message(response, chat_id, bot)
         except requests.exceptions.ConnectionError as error:
