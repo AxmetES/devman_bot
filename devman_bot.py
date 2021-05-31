@@ -63,9 +63,10 @@ def main():
     logging.basicConfig(level=logging.DEBUG,
                         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     logger.setLevel(logging.INFO)
+    logger.info('Bot started!!!!!!!!!!--->')
     handler = BotLoggerHandler(bot=bot, chat_id=chat_id)
     logger.addHandler(handler)
-    logger.info('Bot started!!!.')
+    # logger.info('Bot started!!!.')
     request_params = {}
     while True:
         try:
