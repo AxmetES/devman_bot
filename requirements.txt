@@ -2,5 +2,5 @@ telegram==0.0.1
 async-timeout==3.0.1
 proxybroker==0.3.2
 python-telegram-bot==12.4.2
-requests==2.23.0
+requests==2.31.0
 python-dotenv==0.12.0
