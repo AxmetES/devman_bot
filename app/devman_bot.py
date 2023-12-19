@@ -1,13 +1,17 @@
+import os
 import time
-
 import requests
 import telegram
-from proxy_broker import get_proxy
-import os
 import logging
+
 from dotenv import load_dotenv
 
+from config import settings
+
 logger = logging.getLogger('bot logger')
+
+bot = telegram.Bot(token=settings.tg_token)
+chat_id = settings.chat_id
 
 
 def get_time_stamp(response):
@@ -52,21 +56,13 @@ def request_devman_api(url, headers, params):
 def main():
     load_dotenv(verbose=True)
     long_polling_url = 'https://dvmn.org/api/long_polling/'
-    devman_token = os.getenv('DEVMAN_TOKEN')
-    headers = {'Authorization': f'Token {devman_token}'}
-
-    proxy = get_proxy()
-    pp = telegram.utils.request.Request(proxy_url=proxy)
-    bot = telegram.Bot(token=os.getenv('BOT_TOKEN'), request=pp)
-    chat_id = os.getenv('CHAT_ID')
-
+    headers = {'Authorization': f'Token {settings.devman_token}'}
     logging.basicConfig(level=logging.DEBUG,
                         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     logger.setLevel(logging.INFO)
     logger.info('Bot started!!!!!!!!!!--->')
     handler = BotLoggerHandler(bot=bot, chat_id=chat_id)
     logger.addHandler(handler)
-    # logger.info('Bot started!!!.')
     request_params = {}
     while True:
         try:
