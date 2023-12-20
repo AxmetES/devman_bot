@@ -8,11 +8,14 @@ from dotenv import load_dotenv
 
 from config import settings
 
+
 logger = logging.getLogger('bot logger')
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger.setLevel(logging.INFO)
 
 bot = telegram.Bot(token=settings.tg_token)
 chat_id = settings.chat_id
-
 
 def get_time_stamp(response):
     if response['status'] == 'found':
@@ -28,17 +31,13 @@ def get_time_stamp(response):
 def send_message(response, chat_id, bot):
     url_devman = 'https://dvmn.org'
     message = ''
-
     if response['status'] == 'found':
         attempt = response['new_attempts'][0]
-
         if not attempt['is_negative']:
             message = 'Преподавателю все понравилось, можно приступать к следующему уроку!'
         elif attempt['is_negative']:
             message = 'К сожалению в работе нашлись ошибки'
-
         url_devman = url_devman + attempt['lesson_url']
-
         full_message = f'''{attempt['lesson_title']}, {message}  Ссылка на урок: {url_devman}'''
         bot.send_message(chat_id=chat_id, text=full_message)
 
@@ -47,7 +46,6 @@ def request_devman_api(url, headers, params):
     response = requests.get(url=url, headers=headers, params=params)
     response.raise_for_status()
     response_data = response.json()
-
     if 'error' in response.text:
         raise requests.exceptions.HTTPError(response_data['error'])
     return response_data
@@ -57,10 +55,9 @@ def main():
     load_dotenv(verbose=True)
     long_polling_url = 'https://dvmn.org/api/long_polling/'
     headers = {'Authorization': f'Token {settings.devman_token}'}
-    logging.basicConfig(level=logging.DEBUG,
-                        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    logger.setLevel(logging.INFO)
+
     logger.info('Bot started!!!!!!!!!!--->')
+    bot.send_message(chat_id=chat_id, text='Bot started')
     handler = BotLoggerHandler(bot=bot, chat_id=chat_id)
     logger.addHandler(handler)
     request_params = {}
