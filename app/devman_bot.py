@@ -12,14 +12,9 @@ from config import settings
 
 
 logger = logging.getLogger('bot logger')
-logging.basicConfig(level=logging.DEBUG,
-                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-logger.setLevel(logging.INFO)
-handler = RotatingFileHandler("bot.log", maxBytes=200, backupCount=2)
-logger.addHandler(handler)
-
 bot = telegram.Bot(token=settings.tg_token)
 chat_id = settings.chat_id
+
 
 def get_time_stamp(response):
     if response['status'] == 'found':
@@ -94,4 +89,10 @@ class BotLoggerHandler(logging.Handler):
 
 
 if __name__ == '__main__':
+    logging.basicConfig(level=logging.DEBUG,
+                        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    logger.setLevel(logging.INFO)
+    handler = RotatingFileHandler("bot.log", maxBytes=200, backupCount=2)
+    logger.addHandler(handler)
+
     main()
